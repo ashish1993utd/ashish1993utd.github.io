@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyReads - Ashish Sharma</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,200 +12,232 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: #fafaf9;
-            color: #1a1a1a;
-            line-height: 1.6;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            padding: 0;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #2c3e50;
+            line-height: 1.6;
         }
 
-        /* Header */
+        /* Header Styles */
         header {
-            background: linear-gradient(135deg, #ffffff 0%, #fef7f0 100%);
-            border-bottom: 1px solid #ede9e3;
-            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-bottom: 1px solid #eee;
+            padding: 3rem 1rem;
             text-align: center;
-            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(231, 76, 60, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        header h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            color: #1a1a1a;
             margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
         }
 
-        .subtitle {
+        .title-emoji {
+            display: inline-block;
+            font-size: 3rem;
+            margin-right: 1rem;
+            vertical-align: middle;
+        }
+
+        header p {
             font-size: 1.2rem;
-            color: #7a6f68;
-            font-weight: 400;
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .back-link {
+            display: inline-block;
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #c0392b;
+            transform: translateX(-3px);
+        }
+
+        .back-link::before {
+            content: '← ';
         }
 
         /* Stats Bar */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-            padding: 2rem;
-            background: #ffffff;
-            border-radius: 12px;
-            border: 1px solid #ede9e3;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        .stats-container {
+            background: #fff;
+            padding: 2rem 1rem;
+            border-bottom: 1px solid #eee;
+            margin-top: 0;
         }
 
-        .stat {
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            border-radius: 12px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .stat-item:hover {
+            background: #f0f1f2;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
 
         .stat-number {
             font-size: 2.5rem;
             font-weight: 700;
             color: #e74c3c;
-            display: block;
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
             font-size: 0.95rem;
-            color: #7a6f68;
+            color: #7f8c8d;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.5px;
         }
 
-        /* Section Heading */
-        .section-heading {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 2rem;
-            margin-top: 3rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #e74c3c;
-            display: inline-block;
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
         }
 
-        /* Featured Books with Synthesis */
-        .featured-section {
+        section {
             margin-bottom: 4rem;
         }
 
-        .featured-books-grid {
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, transparent);
+            border-radius: 2px;
+        }
+
+        /* Featured Books Section */
+        .featured-books {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
 
-        .featured-book-card {
-            background: #ffffff;
+        .book-card {
+            background: #fff;
             border-radius: 12px;
             padding: 2rem;
-            border: 1px solid #ede9e3;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
             display: flex;
             flex-direction: column;
         }
 
-        .featured-book-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        .book-card:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+            border-color: #e74c3c;
         }
 
-        .featured-badge {
-            display: inline-block;
-            background: #fef7f0;
-            color: #e74c3c;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            width: fit-content;
+        .book-header {
+            margin-bottom: 1.5rem;
         }
 
         .book-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
         }
 
         .book-author {
             font-size: 0.95rem;
-            color: #7a6f68;
-            margin-bottom: 1rem;
+            color: #e74c3c;
             font-weight: 500;
         }
 
-        .book-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            color: #7a6f68;
-            flex-wrap: wrap;
-        }
-
-        .book-rating {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .stars {
-            color: #e74c3c;
-            letter-spacing: 2px;
-        }
-
-        .synthesis-label {
+        .book-stats {
             font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #9a8f88;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            margin-top: 1.5rem;
+            color: #7f8c8d;
+            margin-top: 0.5rem;
         }
 
-        .synthesis-text {
+        .book-synthesis {
             font-size: 0.95rem;
-            line-height: 1.7;
-            color: #3d3d3d;
+            color: #555;
             margin-bottom: 1.5rem;
+            line-height: 1.7;
             flex-grow: 1;
         }
 
-        .key-insights {
-            background: #fef7f0;
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin-top: auto;        }
+        .book-insights {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f0f0f0;
+        }
 
         .insights-label {
             font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #9a8f88;
             font-weight: 600;
-            margin-bottom: 0.75rem;
+            color: #e74c3c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            display: block;
         }
 
         .insights-list {
@@ -214,541 +246,696 @@
 
         .insights-list li {
             font-size: 0.9rem;
-            color: #3d3d3d;
-            margin-bottom: 0.6rem;
-            padding-left: 1.25rem;
+            color: #555;
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
             position: relative;
             line-height: 1.5;
         }
 
-        .insights-list li:last-child {
-            margin-bottom: 0;
-        }
-
-        .insights-list li:before {
-            content: "→";
+        .insights-list li::before {
+            content: '•';
             position: absolute;
             left: 0;
             color: #e74c3c;
-            font-weight: 700;
+            font-weight: bold;
         }
 
         /* All Books Section */
-        .all-books-section {
-            margin-bottom: 4rem;
-        }
-
         .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .book-card {
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid #ede9e3;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .book-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .book-card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-            flex-grow: 1;
-        }
-
-        .book-card-author {
-            font-size: 0.85rem;
-            color: #7a6f68;
-            margin-bottom: 0.75rem;
-        }
-
-        .book-card-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            margin-top: auto;
-        }
-
-        .book-card-rating {
-            font-size: 0.85rem;
-            color: #e74c3c;
-            letter-spacing: 1px;
-        }
-
-        .book-card-date {
-            font-size: 0.8rem;
-            color: #9a8f88;
-        }
-
-        /* Currently Reading Section */
-        .reading-section {
-            margin-bottom: 4rem;        }
-
-        .reading-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
         }
 
-        .reading-card {
-            background: linear-gradient(135deg, #ffffff 0%, #fef7f0 100%);
-            border-radius: 8px;
+        .book-item {
+            background: #fff;
             padding: 1.5rem;
-            border: 2px solid #e74c3c;
-            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.08);
-            position: relative;
-            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
         }
 
-        .reading-card::before {
-            content: "📖";
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            opacity: 0.1;
+        .book-item:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            border-color: #e74c3c;
+            transform: translateY(-4px);
+        }
+
+        .book-item-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .book-item-author {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 0.8rem;
+        }
+
+        .book-item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+
+        .stars {
+            color: #e74c3c;
+            letter-spacing: 2px;
+        }
+
+        /* Currently Reading Section */
+        .reading-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .reading-item {
+            background: linear-gradient(135deg, #fff9f7 0%, #fff 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(231, 76, 60, 0.05);
+        }
+
+        .reading-item:hover {
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.15);
+            transform: translateX(4px);
+        }
+
+        .reading-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 0.4rem;
+            line-height: 1.3;
+        }
+
+        .reading-author {
+            font-size: 0.9rem;
+            color: #e74c3c;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .reading-rating {
+            font-size: 0.9rem;
+            color: #7f8c8d;
         }
 
         .reading-badge {
             display: inline-block;
             background: #e74c3c;
             color: white;
-            padding: 0.3rem 0.7rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.75rem;
-        }
-
-        .reading-card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 0.5rem;
-        }
-
-        .reading-card-author {
-            font-size: 0.9rem;
-            color: #7a6f68;
-        }
-
-        .progress-bar {
             margin-top: 1rem;
-            height: 3px;
-            background: #ede9e3;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: #e74c3c;
-            border-radius: 2px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.7;
-            }
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         /* Footer */
         footer {
-            background: #ffffff;
-            border-top: 1px solid #ede9e3;
-            padding: 2rem;
+            background: #fff;
+            border-top: 1px solid #eee;
+            padding: 3rem 1rem;
             text-align: center;
-            color: #7a6f68;
-            font-size: 0.9rem;
+            color: #7f8c8d;
             margin-top: 4rem;
         }
 
-        .footer-link {
+        footer p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
             color: #e74c3c;
             text-decoration: none;
             font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        .footer-link:hover {
+        footer a:hover {
+            color: #c0392b;
             text-decoration: underline;
         }
 
-        .footer-meta {
-            margin-top: 0.5rem;
-            font-size: 0.85rem;            color: #9a8f88;
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
+            header h1 {
                 font-size: 2.5rem;
             }
 
-            .subtitle {
+            .title-emoji {
+                font-size: 2rem;
+                margin-right: 0.5rem;
+            }
+
+            header p {
                 font-size: 1rem;
             }
 
-            .featured-books-grid {
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .featured-books {
                 grid-template-columns: 1fr;
             }
 
-            .books-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            .stats-grid {
+                gap: 1rem;
             }
 
-            .reading-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-bar {
-                grid-template-columns: 1fr;
-            }
-
-            header {
-                padding: 2.5rem 1.5rem;
-                margin-bottom: 2rem;
+            .stat-number {
+                font-size: 2rem;
             }
 
             .container {
-                padding: 0 1.5rem;
+                padding: 2rem 1rem;
             }
         }
 
-        /* Print styles */
-        @media print {
+        @media (max-width: 480px) {
             header {
-                background: white;
-                border-bottom: 2px solid #ede9e3;
+                padding: 2rem 1rem;
             }
 
-            .featured-book-card,
-            .book-card,
-            .reading-card {
-                page-break-inside: avoid;
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .title-emoji {
+                display: block;
+                margin: 0 0 1rem 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.75rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            section h2 {
+                font-size: 1.25rem;
+            }
+
+            .book-card {
+                padding: 1.5rem;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reading-list {
+                grid-template-columns: 1fr;
             }
         }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .book-card,
+        .book-item,
+        .reading-item {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .book-card:nth-child(1) { animation-delay: 0.1s; }
+        .book-card:nth-child(2) { animation-delay: 0.2s; }
+        .book-card:nth-child(3) { animation-delay: 0.3s; }
+        .book-card:nth-child(4) { animation-delay: 0.4s; }
+        .book-card:nth-child(5) { animation-delay: 0.5s; }
+        .book-card:nth-child(6) { animation-delay: 0.6s; }
+        .book-card:nth-child(7) { animation-delay: 0.7s; }
+        .book-card:nth-child(8) { animation-delay: 0.8s; }
+        .book-card:nth-child(9) { animation-delay: 0.9s; }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <h1>MyReads</h1>
-        <p class="subtitle">Ashish's Reading Journal</p>
+        <a href="https://sharma-ashish.com" class="back-link" style="position: absolute; top: 1.5rem; left: 1rem;">Back to website</a>
+        <h1><span class="title-emoji">📚</span>MyReads</h1>
+        <p>What I'm reading and learning</p>
     </header>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Stats Bar -->
-        <section class="stats-bar">
-            <div class="stat">
-                <span class="stat-number">15</span>
-                <span class="stat-label">Books Read</span>
+    <div class="stats-container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Books Read</div>
             </div>
-            <div class="stat">
-                <span class="stat-number">4</span>
-                <span class="stat-label">Currently Reading</span>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Currently Reading</div>
             </div>
-            <div class="stat">
-                <span class="stat-number">3</span>
-                <span class="stat-label">Books with Notes</span>
+            <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Books with Notes</div>
             </div>
-        </section>
+            <div class="stat-item">
+                <div class="stat-number">163</div>
+                <div class="stat-label">Total Highlights</div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Featured Books with Synthesis -->
-        <section class="featured-section">
-            <h2 class="section-heading">Books with Notes</h2>
-            <div class="featured-books-grid">
-                <!-- Book 1 -->
-                <div class="featured-book-card">
-                    <span class="featured-badge">Featured</span>
-                    <h3 class="book-title">The Magic of Thinking Big</h3>
-                    <p class="book-author">David Joseph Schwartz</p>
-                    <div class="book-meta">
-                        <div class="book-rating">
-                            <span class="stars">★★★★★</span>
-                            <span>5 stars</span>
-                        </div>
-                        <span>Mar 2019</span>
+    <div class="container">
+        <!-- Featured Books Section -->
+        <section>
+            <h2>Featured Books</h2>
+            <p style="color: #7f8c8d; margin-bottom: 2rem; font-size: 0.95rem;">Books with meaningful Kindle highlights and notes — core insights that shaped my thinking</p>
+
+            <div class="featured-books">
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">The Magic of Thinking Big</div>
+                        <div class="book-author">David Joseph Schwartz</div>
+                        <div class="book-stats">87 highlights</div>
                     </div>
-                    <div class="synthesis-label">Synthesis</div>
-                    <p class="synthesis-text">
-                        Schwartz's core argument is that the size of your success is directly proportional to the size of your belief. The book emphasizes that self-doubt is your greatest enemy—you must believe in yourself before anyone else will. The patterns across your highlights reveal that confidence is built through action (not waiting for motivation), fear is conquered by doing (not deliberating), and how you think about yourself literally shapes how others treat you. The practical takeaways are clear: visualize what can be, not what is; surround yourself with ambitious people; treat everyone as important; focus on big objectives instead of surface-level problems; and invest relentlessly in your own growth.
-                    </p>
-                    <div class="key-insights">                        <div class="insights-label">Key Insights</div>
+                    <div class="book-synthesis">
+                        This book explores the principle that your achievements are fundamentally constrained by the scale of your beliefs. Schwartz presents a practical framework showing how confidence, a strong self-image, and the deliberate rejection of self-imposed limitations form the bedrock of meaningful success.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
                         <ul class="insights-list">
-                            <li>Belief precedes ability—the 'how-to-do-it' only develops after you believe 'I-can-do-it'</li>
-                            <li>Action is the antidote to fear; indecision fertilizes it</li>
-                            <li>You are measured by the size of your thinking, not your credentials</li>
-                            <li>Your environment shapes your mindset—curate it deliberately</li>
-                            <li>Treat every person as the most important person on earth</li>
+                            <li>Your belief system acts as a self-fulfilling prophecy — what you genuinely expect becomes your reality</li>
+                            <li>Positive self-dialogue and internal conversation are trainable skills with measurable impact on outcomes</li>
+                            <li>Thinking big requires consistent daily practice, not just occasional motivation</li>
+                            <li>Action and experimentation matter more than waiting for perfect conditions or complete preparation</li>
+                            <li>Your environment shapes your possibilities — deliberately surrounding yourself with growth-minded people amplifies your potential</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Book 2 -->
-                <div class="featured-book-card">
-                    <span class="featured-badge">Featured</span>
-                    <h3 class="book-title">The Power of Your Subconscious Mind</h3>
-                    <p class="book-author">Joseph Murphy</p>
-                    <div class="book-meta">
-                        <div class="book-rating">
-                            <span class="stars">★★★★★</span>
-                            <span>5 stars</span>
-                        </div>
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">The Psychology of Money</div>
+                        <div class="book-author">Morgan Housel</div>
+                        <div class="book-stats">16 highlights</div>
+                    </div>
+                    <div class="book-synthesis">
+                        This book challenges the notion that financial success is primarily a function of intelligence or technical skill. Housel argues that emotional control, behavioral discipline, and self-awareness matter far more — and that emotions, ego, and the comparison trap systematically derail sound financial reasoning.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
+                        <ul class="insights-list">
+                            <li>Wealth and income are distinct variables — high earners can stay poor through poor behavioral choices</li>
+                            <li>The exponential power of compounding rewards patience and consistency more than any other factor</li>
+                            <li>Understanding when "enough is enough" is a psychological skill that protects against never-ending hedonic pursuit</li>
+                            <li>Planning must account for inevitable failure — flexibility and margin for error matter more than precision forecasts</li>
+                            <li>Financial discipline is ultimately about managing ego and resisting social comparison pressures</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">Wings of Fire</div>
+                        <div class="book-author">A.P.J. Abdul Kalam</div>
+                        <div class="book-stats">41 highlights</div>
+                    </div>
+                    <div class="book-synthesis">
+                        Kalam's autobiographical account chronicles his evolution from a modest background to becoming India's chief scientist and president. The narrative demonstrates that with clear vision, unwavering commitment, strong teamwork, and a relentless work ethic, even the largest obstacles can be overcome.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
+                        <ul class="insights-list">
+                            <li>Absolute commitment to a purpose is the single most reliable predictor of extraordinary achievement</li>
+                            <li>The journey itself — the learning and growth along the way — often matters more than reaching the destination</li>
+                            <li>Failure contains crucial information and becomes a stepping stone when approached with curiosity rather than discouragement</li>
+                            <li>Mentors and collaborative teams multiply what's possible for an individual working alone</li>
+                            <li>Creativity emerges from seeing problems from unusual angles and breaking conventional thinking patterns</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">Thinking, Fast and Slow</div>
+                        <div class="book-author">Daniel Kahneman</div>
+                        <div class="book-stats">7 highlights</div>
+                    </div>
+                    <div class="book-synthesis">
+                        Kahneman's landmark work maps two distinct cognitive systems: fast, intuitive thinking that relies on pattern recognition and heuristics, and slow, deliberate thinking that engages careful analysis. The book reveals how cognitive biases systematically distort our judgment across all domains.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
+                        <ul class="insights-list">
+                            <li>We dramatically overestimate how well we understand complex systems and events — confidence often exceeds actual knowledge</li>
+                            <li>Intuition is pattern recognition: our fast thinking excels when patterns are familiar, but fails in novel or complex domains</li>
+                            <li>Our minds answer easy questions when asked hard ones — we substitute availability and ease for accuracy</li>
+                            <li>Media coverage and availability bias distort our perception of importance and risk in the world</li>
+                            <li>The illusion of confidence runs deep — even experts fall prey to overconfidence in their predictions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">Ikigai</div>
+                        <div class="book-author">Héctor García & Francesc Miralles</div>
+                        <div class="book-stats">5 highlights</div>
+                    </div>
+                    <div class="book-synthesis">
+                        Drawing from Japanese philosophy and real-world research in centenarian communities, this book explores how discovering and living your ikigai — your unique intersection of purpose, contribution, and passion — directly enables a longer, healthier, and more fulfilling life.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
+                        <ul class="insights-list">
+                            <li>Having a compelling reason to get up in the morning — your ikigai — is a measurable predictor of longevity</li>
+                            <li>Intellectual engagement and continuous learning directly slow cognitive decline and aging</li>
+                            <li>The Japanese practice of never truly retiring — staying engaged and purposeful throughout life — protects mental and physical health</li>
+                            <li>Curiosity functions as brain nourishment, keeping neural pathways active and adaptive</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">The Power of Your Subconscious Mind</div>
+                        <div class="book-author">Joseph Murphy</div>
+                        <div class="book-stats">3 highlights</div>
+                    </div>
+                    <div class="book-synthesis">
+                        Murphy proposes that the subconscious mind operates according to principles distinct from conscious reasoning, and that through targeted belief, visualization, and affirmation practices, you can reprogram it to manifest improvements in health, financial outcomes, and relationships.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
+                        <ul class="insights-list">
+                            <li>The subconscious mind represents an untapped reservoir of capability and creative potential</li>
+                            <li>Faith and expectation function as programming languages for the subconscious — they shape what manifests in your reality</li>
+                            <li>Practical mental reprogramming techniques can systematically reshape your default patterns and beliefs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">Autobiography of a Yogi</div>
+                        <div class="book-author">Paramahansa Yogananda</div>
+                        <div class="book-stats">2 highlights</div>
+                    </div>
+                    <div class="book-synthesis">
+                        Yogananda's spiritual autobiography traces a path toward self-realization through contemplative practice, wisdom from enlightened teachers, and the systematic dissolution of identification with the external world.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
+                        <ul class="insights-list">
+                            <li>Detachment from worldly illusions and desires is not rejection of life, but liberation from compulsive reactivity</li>
+                            <li>Regular spiritual practice creates measurable shifts in consciousness and perception over time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">Atomic Habits</div>
+                        <div class="book-author">James Clear</div>
+                        <div class="book-stats">1 highlight</div>
+                    </div>
+                    <div class="book-synthesis">
+                        Clear argues that lasting transformation does not require bold, unrealistic goals, but rather a systematic approach to building better daily habits. Small, almost imperceptible improvements compound exponentially over time to produce remarkable results.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
+                        <ul class="insights-list">
+                            <li>Systems and habits matter far more than goals and intentions — you achieve what you practice daily</li>
+                            <li>Identity-based habit formation creates sustainable change better than outcome-focused approaches</li>
+                            <li>The compounding effect of tiny improvements produces transformational results when sustained over months and years</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="book-card">
+                    <div class="book-header">
+                        <div class="book-title">Ashtavakra Gita</div>
+                        <div class="book-author">Swami Chinmayananda</div>
+                        <div class="book-stats">1 highlight</div>
+                    </div>
+                    <div class="book-synthesis">
+                        This ancient Hindu text presents a radical non-dualist philosophy, asserting that beneath the changing world of appearances lies pure, unchanging consciousness — and that your true identity is this witness awareness, distinct from all passing phenomena.
+                    </div>
+                    <div class="book-insights">
+                        <span class="insights-label">Key Insights</span>
+                        <ul class="insights-list">
+                            <li>The witness consciousness observes all change but itself remains untouched and unconditioned</li>
+                            <li>Ultimate reality transcends the dualities of ego, self-image, and the constructed narrative self</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Books Read Section -->
+        <section>
+            <h2>All Books Read</h2>
+            <div class="books-grid">
+                <div class="book-item">
+                    <div class="book-item-title">Five Point Someone</div>
+                    <div class="book-item-author">Chetan Bhagat</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★</span>
+                        <span>Aug 2011</span>
+                    </div>
+                </div>
+
+                <div class="book-item">
+                    <div class="book-item-title">The Power of Your Subconscious Mind: Original Classic Edition</div>
+                    <div class="book-item-author">Joseph Murphy</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
                         <span>Sep 2025</span>
                     </div>
-                    <div class="synthesis-label">Synthesis</div>
-                    <p class="synthesis-text">
-                        Murphy's central premise is that the subconscious mind is a powerful force that responds to belief and intention. Your highlights center on the principle that clearly directed thought and faith activate the subconscious to work toward your goals. The book explores how the mind can be trained to manifest positive outcomes through consistent, intentional mental practice and unwavering belief in desired outcomes.
-                    </p>
-                    <div class="key-insights">
-                        <div class="insights-label">Key Insights</div>
-                        <ul class="insights-list">
-                            <li>The subconscious responds to clear, faith-driven intention</li>
-                            <li>Mental and physical states are deeply interconnected</li>
-                            <li>Repeated affirmations and visualization reshape your reality</li>
-                            <li>Your beliefs are the blueprints for your life outcomes</li>
-                        </ul>
+                </div>
+
+                <div class="book-item">
+                    <div class="book-item-title">The Alchemist</div>
+                    <div class="book-item-author">Paulo Coelho</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
+                        <span>Mar 2019</span>
                     </div>
                 </div>
 
-                <!-- Book 3 -->
-                <div class="featured-book-card">
-                    <span class="featured-badge">Featured</span>
-                    <h3 class="book-title">The Psychology of Money</h3>
-                    <p class="book-author">Morgan Housel</p>
-                    <div class="book-meta">
-                        <div class="book-rating">
-                            <span class="stars">★★★☆☆</span>
-                            <span>3 stars</span>
-                        </div>
-                    </div>
-                    <div class="synthesis-label">Synthesis</div>
-                    <p class="synthesis-text">
-                        Housel's thesis is that financial success has less to do with intelligence and more to do with behavior. Your highlights paint a vivid picture of his key arguments: wealth is invisible (it's what you don't buy), happiness comes from controlling your time rather than accumulating possessions, and the biggest financial skill is knowing when you have enough. The danger of social comparison runs throughout—moving goalposts, envy, and ego are the real wealth destroyers. Your highlights suggest you were particularly drawn to the idea that true wealth means freedom: the ability to do what you want, when you want, with whom you want.
-                    </p>
-                    <div class="key-insights">
-                        <div class="insights-label">Key Insights</div>
-                        <ul class="insights-list">
-                            <li>Wealth = what you don't see. It's the cars not purchased, not the ones in the driveway</li>
-                            <li>The hardest financial skill is getting the goalpost to stop moving</li>
-                            <li>Control over your time pays the highest dividend in finance</li>
-                            <li>Savings = income minus ego</li>
-                            <li>Volatility is the price of admission for long-term investing success</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- All Books Read -->
-        <section class="all-books-section">
-            <h2 class="section-heading">All Books Read</h2>
-            <div class="books-grid">
-                <div class="book-card">
-                    <div class="book-card-title">Five Point Someone</div>
-                    <div class="book-card-author">Chetan Bhagat</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★☆☆</div>
-                        <div class="book-card-date">Aug 2011</div>
+                <div class="book-item">
+                    <div class="book-item-title">I Too Had a Love Story</div>
+                    <div class="book-item-author">Ravinder Singh</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★</span>
+                        <span>May 2016</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">The Power of Your Subconscious Mind</div>
-                    <div class="book-card-author">Joseph Murphy</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★★</div>
-                        <div class="book-card-date">Sep 2025</div>
+                <div class="book-item">
+                    <div class="book-item-title">The Power of Habit</div>
+                    <div class="book-item-author">Charles Duhigg</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
+                        <span>Aug 2019</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">The Alchemist</div>
-                    <div class="book-card-author">Paulo Coelho</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★☆</div>
-                        <div class="book-card-date">Mar 2019</div>
+                <div class="book-item">
+                    <div class="book-item-title">Deep Work</div>
+                    <div class="book-item-author">Cal Newport</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
+                        <span>Apr 2019</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">I Too Had a Love Story</div>                    <div class="book-card-author">Ravinder Singh</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★☆</div>
-                        <div class="book-card-date">May 2016</div>
+                <div class="book-item">
+                    <div class="book-item-title">The Subtle Art of Not Giving a F*ck</div>
+                    <div class="book-item-author">Mark Manson</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★</span>
+                        <span>No date</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">The Power of Habit</div>
-                    <div class="book-card-author">Charles Duhigg</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★☆</div>
-                        <div class="book-card-date">Apr 2019</div>
+                <div class="book-item">
+                    <div class="book-item-title">Harry Potter and the Cursed Child</div>
+                    <div class="book-item-author">J.K. Rowling</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★</span>
+                        <span>Apr 2018</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">Deep Work</div>
-                    <div class="book-card-author">Cal Newport</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★☆</div>
-                        <div class="book-card-date">Apr 2019</div>
+                <div class="book-item">
+                    <div class="book-item-title">Ikigai</div>
+                    <div class="book-item-author">Héctor García</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★</span>
+                        <span>No date</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">The Subtle Art of Not Giving a F*ck</div>
-                    <div class="book-card-author">Mark Manson</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">Unrated</div>
-                        <div class="book-card-date">—</div>
+                <div class="book-item">
+                    <div class="book-item-title">Two By Two</div>
+                    <div class="book-item-author">Nicholas Sparks</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
+                        <span>Aug 2019</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">Harry Potter and the Cursed Child</div>
-                    <div class="book-card-author">J.K. Rowling</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★☆</div>
-                        <div class="book-card-date">Apr 2018</div>
+                <div class="book-item">
+                    <div class="book-item-title">When: The Scientific Secrets of Perfect Timing</div>
+                    <div class="book-item-author">Daniel H. Pink</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★</span>
+                        <span>Sep 2019</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">Ikigai</div>
-                    <div class="book-card-author">Hector Garcia</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★☆</div>
-                        <div class="book-card-date">Apr 2019</div>
+                <div class="book-item">
+                    <div class="book-item-title">21 Lessons for the 21st Century</div>
+                    <div class="book-item-author">Yuval Noah Harari</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
+                        <span>No date</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">The Magic of Thinking Big</div>
-                    <div class="book-card-author">David Joseph Schwartz</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★★</div>
-                        <div class="book-card-date">Mar 2019</div>
+                <div class="book-item">
+                    <div class="book-item-title">Atomic Habits</div>
+                    <div class="book-item-author">James Clear</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
+                        <span>Aug 2022</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">When: Scientific Secrets of Perfect Timing</div>
-                    <div class="book-card-author">Daniel Pink</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★☆☆</div>
-                        <div class="book-card-date">Sep 2019</div>
+                <div class="book-item">
+                    <div class="book-item-title">Digital Minimalism</div>
+                    <div class="book-item-author">Cal Newport</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
+                        <span>No date</span>
                     </div>
                 </div>
 
-                <div class="book-card">
-                    <div class="book-card-title">21 Lessons for the 21st Century</div>
-                    <div class="book-card-author">Yuval Noah Harari</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">Unrated</div>
-                        <div class="book-card-date">—</div>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-card-title">Atomic Habits</div>
-                    <div class="book-card-author">James Clear</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★☆</div>
-                        <div class="book-card-date">Aug 2022</div>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-card-title">Digital Minimalism</div>
-                    <div class="book-card-author">Cal Newport</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★★☆</div>
-                        <div class="book-card-date">—</div>
-                    </div>
-                </div>
-
-                <div class="book-card">
-                    <div class="book-card-title">The Psychology of Money</div>
-                    <div class="book-card-author">Morgan Housel</div>
-                    <div class="book-card-meta">
-                        <div class="book-card-rating">★★★☆☆</div>
-                        <div class="book-card-date">—</div>
+                <div class="book-item">
+                    <div class="book-item-title">The Psychology of Money</div>
+                    <div class="book-item-author">Morgan Housel</div>
+                    <div class="book-item-meta">
+                        <span class="stars">★★★★</span>
+                        <span>No date</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Currently Reading -->
-        <section class="reading-section">
-            <h2 class="section-heading">Currently Reading</h2>
-            <div class="reading-grid">
-                <div class="reading-card">
-                    <span class="reading-badge">Reading</span>
-                    <div class="reading-card-title">Autobiography of a Yogi</div>
-                    <div class="reading-card-author">Paramahansa Yogananda</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 45%"></div>
+        <!-- Currently Reading Section -->
+        <section>
+            <h2>Currently Reading</h2>
+            <div class="reading-list">
+                <div class="reading-item">
+                    <div class="reading-title">Autobiography of a Yogi</div>
+                    <div class="reading-author">Paramahansa Yogananda</div>
+                    <div class="reading-rating">
+                        <span class="stars">★★★★</span>
                     </div>
+                    <span class="reading-badge">In Progress</span>
                 </div>
 
-                <div class="reading-card">
-                    <span class="reading-badge">Reading</span>
-                    <div class="reading-card-title">Mossad: The Greatest Missions of the Israeli Secret Service</div>
-                    <div class="reading-card-author">Michael Bar-Zohar</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 30%"></div>
+                <div class="reading-item">
+                    <div class="reading-title">Mossad: The Greatest Missions of the Israeli Secret Service</div>
+                    <div class="reading-author">Michael Bar-Zohar</div>
+                    <div class="reading-rating">
+                        <span class="stars">★★★★</span>
                     </div>
+                    <span class="reading-badge">In Progress</span>
                 </div>
 
-                <div class="reading-card">
-                    <span class="reading-badge">Reading</span>
-                    <div class="reading-card-title">You Can Heal Your Life</div>
-                    <div class="reading-card-author">Louise L. Hay</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 25%"></div>
+                <div class="reading-item">
+                    <div class="reading-title">You Can Heal Your Life</div>
+                    <div class="reading-author">Louise L. Hay</div>
+                    <div class="reading-rating">
+                        <span class="stars">★★★★</span>
                     </div>
+                    <span class="reading-badge">In Progress</span>
                 </div>
 
-                <div class="reading-card">
-                    <span class="reading-badge">Reading</span>
-                    <div class="reading-card-title">A Setback is a Setup for a Comeback</div>
-                    <div class="reading-card-author">Willie Jolley</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 50%"></div>
+                <div class="reading-item">
+                    <div class="reading-title">A Setback is a Setup for a Comeback</div>
+                    <div class="reading-author">Willie Jolley</div>
+                    <div class="reading-rating">
+                        <span class="stars">★★★★</span>
                     </div>
+                    <span class="reading-badge">In Progress</span>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>Powered by Kindle & Goodreads</p>
-        <p><a href="https://sharma-ashish.com" class="footer-link">← Back to sharma-ashish.com</a></p>
-        <p class="footer-meta">Updated March 2026</p>
+        <p>Last updated: March 19, 2026</p>
+        <div class="footer-links">
+            <a href="https://www.goodreads.com/user/show/95440685-ashish-sharma" target="_blank">Goodreads Profile</a>
+            <a href="https://sharma-ashish.com">Back to Website</a>
+        </div>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">Made with passion for reading and continuous learning</p>
     </footer>
+
+    <script>
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add subtle animation on page load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
 </body>
 </html>
